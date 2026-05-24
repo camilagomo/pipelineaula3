@@ -1,0 +1,34 @@
+name: Execucao Manual
+
+on:
+  workflow_dispatch:
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Instalar browsers do Playwright
+        run: npx playwright install --with-deps
+
+      - name: Executar testes E2E
+        run: npx playwright test
+
+      - name: Publicar relatorio HTML
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

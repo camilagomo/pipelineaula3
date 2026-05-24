@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Playwright — gerados automaticamente
+playwright-report/
+test-results/
+.playwright/
+
+# Autenticacao salva pelo Playwright (SENSIVEL — pode conter sessoes e tokens)
+storageState.json
+auth/
+
+# Variaveis de ambiente (SENSIVEL)
+.env
+.env.local
+.env*.local
+
+# Compilacao TypeScript
+dist/
+
+# macOS
+.DS_Store
